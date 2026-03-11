@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edil Quinto S.r.l. — Materiali Edili a Genova dal 2000</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap');
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --orange: #e8600a;
+      --orange-dark: #c04e05;
+      --dark: #111111;
+      --dark2: #1a1a1a;
+      --mid: #2a2a2a;
+      --gray: #888;
+      --light: #f5f5f5;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Barlow', sans-serif; background: var(--white); color: var(--dark); overflow-x: hidden; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 4rem;
+      background: rgba(17,17,17,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(232,96,10,0.2);
+    }
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.5rem; font-weight: 900;
+      color: white; letter-spacing: 0.05em;
+    }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cta {
+      background: var(--orange); color: white !important;
+      padding: 0.5rem 1.4rem; border-radius: 4px;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--orange-dark) !important; color: white !important; }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80');
+      background-size: cover; background-position: center;
+      filter: brightness(0.35);
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(17,17,17,0.95) 40%, transparent 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      padding: 8rem 4rem 4rem;
+      max-width: 700px;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      color: var(--orange); font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 30px; height: 2px; background: var(--orange); }
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-weight: 900; color: white;
+      line-height: 1.05; text-transform: uppercase;
+    }
+    .hero h1 em { color: var(--orange); font-style: normal; }
+    .hero-desc {
+      margin-top: 1.5rem; color: rgba(255,255,255,0.65);
+      font-size: 1.1rem; font-weight: 300; line-height: 1.7;
+      max-width: 520px;
+    }
+    .hero-actions { display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--orange); color: white;
+      padding: 0.9rem 2.2rem; border-radius: 4px;
+      text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--orange-dark); transform: translateY(-1px); }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.4); color: white;
+      padding: 0.9rem 2.2rem; border-radius: 4px;
+      text-decoration: none; font-weight: 500; font-size: 0.95rem;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-1px); }
+
+    .hero-stats {
+      position: absolute; bottom: 0; right: 0;
+      display: flex;
+      background: var(--orange);
+    }
+    .stat-box {
+      padding: 1.8rem 2.5rem;
+      border-left: 1px solid rgba(255,255,255,0.2);
+      text-align: center; color: white;
+    }
+    .stat-box:first-child { border-left: none; }
+    .stat-num { font-family: 'Barlow Condensed', sans-serif; font-size: 2.5rem; font-weight: 900; line-height: 1; }
+    .stat-label { font-size: 0.75rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.3rem; }
+
+    /* ─── STRIP ─── */
+    .strip {
+      background: var(--dark);
+      padding: 1.2rem 4rem;
+      display: flex; align-items: center; gap: 1rem;
+      overflow: hidden;
+    }
+    .strip-label { color: var(--orange); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
+    .strip-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.15); }
+    .strip-text { color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+
+    /* ─── PRODOTTI ─── */
+    .products { padding: 6rem 4rem; background: var(--light); }
+    .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; }
+    .section-eyebrow { color: var(--orange); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; text-transform: uppercase; }
+    .section-more { color: var(--orange); text-decoration: none; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; }
+    .section-more:hover { text-decoration: underline; }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    @media (max-width: 900px) { .products-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .products-grid { grid-template-columns: 1fr; } }
+
+    .product-card {
+      background: white; border-radius: 8px; overflow: hidden;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
+    .product-img { width: 100%; height: 200px; object-fit: cover; display: block; background: #ddd; }
+    .product-body { padding: 1.2rem 1.4rem 1.6rem; }
+    .product-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .product-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 700; text-transform: uppercase; }
+    .product-desc { font-size: 0.88rem; color: var(--gray); margin-top: 0.4rem; line-height: 1.5; }
+    .product-tag {
+      display: inline-block; margin-top: 0.8rem;
+      background: rgba(232,96,10,0.1); color: var(--orange);
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 0.25rem 0.8rem; border-radius: 50px;
+    }
+
+    /* ─── SERVIZI ─── */
+    .services { padding: 6rem 4rem; background: var(--dark); }
+    .services .section-title { color: white; }
+    .services .section-eyebrow { color: var(--orange); }
+    .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    @media (max-width: 900px) { .services-grid { grid-template-columns: 1fr 1fr; } }
+
+    .service-item {
+      padding: 2rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .service-item:hover { border-color: var(--orange); background: rgba(232,96,10,0.05); }
+    .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .service-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 700; text-transform: uppercase; color: white; margin-bottom: 0.5rem; }
+    .service-desc { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+    /* ─── MARCHI ─── */
+    .brands { padding: 5rem 4rem; background: white; }
+    .brands-grid { display: flex; flex-wrap: wrap; gap: 3rem; align-items: center; justify-content: center; margin-top: 3rem; }
+    .brand-item { opacity: 0.55; transition: opacity 0.2s; filter: grayscale(100%); }
+    .brand-item:hover { opacity: 1; filter: grayscale(0%); }
+    .brand-item img { height: 48px; max-width: 140px; object-fit: contain; }
+
+    /* ─── CONTATTI ─── */
+    .contact { padding: 6rem 4rem; background: var(--light); }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1100px; margin: 0 auto; align-items: start; }
+    @media (max-width: 768px) { .contact-inner { grid-template-columns: 1fr; } }
+
+    .contact-info { }
+    .contact-item { display: flex; gap: 1rem; margin-bottom: 2rem; align-items: flex-start; }
+    .contact-icon { font-size: 1.4rem; margin-top: 0.1rem; }
+    .contact-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.25rem; }
+    .contact-value { font-size: 1rem; color: var(--dark); font-weight: 500; }
+    .contact-sub { font-size: 0.85rem; color: var(--gray); margin-top: 0.2rem; }
+
+    .orari-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+    .orari-table tr td { padding: 0.4rem 0; font-size: 0.9rem; }
+    .orari-table tr td:first-child { color: var(--gray); width: 120px; }
+    .orari-table tr td:last-child { font-weight: 500; }
+    .badge-open { display: inline-block; background: #22c55e20; color: #16a34a; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 50px; letter-spacing: 0.05em; text-transform: uppercase; }
+
+    .map-placeholder {
+      width: 100%; height: 300px; border-radius: 8px;
+      background: #ddd; overflow: hidden;
+      border: none;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,0.35);
+      padding: 2rem 4rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.83rem; flex-wrap: wrap; gap: 1rem;
+    }
+    footer a { color: var(--orange); text-decoration: none; }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero-content { padding: 6rem 1.5rem 3rem; }
+      .hero-stats { position: static; margin-top: 2rem; flex-wrap: wrap; }
+      .products, .services, .brands, .contact { padding: 4rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">EDIL<span>QUINTO</span></div>
+  <ul class="nav-links">
+    <li><a href="#prodotti">Prodotti</a></li>
+    <li><a href="#servizi">Servizi</a></li>
+    <li><a href="#marchi">Marchi</a></li>
+    <li><a href="#contatti" class="nav-cta">Contattaci</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Genova — Dal 2000</div>
+    <h1>Materiali Edili<br />di <em>Qualità</em></h1>
+    <p class="hero-desc">Il punto di riferimento per professionisti e privati a Genova. Cemento, mattoni, piastrelle, pitture, ferramenta e molto altro. Consegne in cantiere su tutto il territorio.</p>
+    <div class="hero-actions">
+      <a href="#contatti" class="btn-primary">Richiedi un preventivo</a>
+      <a href="#prodotti" class="btn-outline">Scopri i prodotti</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-box"><div class="stat-num">25+</div><div class="stat-label">Anni di attività</div></div>
+    <div class="stat-box"><div class="stat-num">∞</div><div class="stat-label">Materiali disponibili</div></div>
+    <div class="stat-box"><div class="stat-num">GE</div><div class="stat-label">Consegne in cantiere</div></div>
+  </div>
+</section>
+
+<!-- STRIP INFO -->
+<div class="strip">
+  <span class="strip-label">Sede</span>
+  <div class="strip-divider"></div>
+  <span class="strip-text">Via Ruzza Francesco Maria, 2/R — Genova 16166</span>
+  <div class="strip-divider"></div>
+  <span class="strip-label">Tel</span>
+  <div class="strip-divider"></div>
+  <span class="strip-text">010 372 5647</span>
+  <div class="strip-divider"></div>
+  <span class="strip-label">Soci D.E.C.</span>
+  <div class="strip-divider"></div>
+  <span class="strip-text">Distributori Edili Consorziati</span>
+</div>
+
+<!-- PRODOTTI -->
+<section class="products" id="prodotti">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">Il nostro catalogo</div>
+      <div class="section-title">I Nostri Prodotti</div>
+    </div>
+    <a href="#contatti" class="section-more">Richiedi info →</a>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <img class="product-img" src="https://images.unsplash.com/photo-1590912376093-07326b08fcd8?w=600&q=75" alt="Cemento e calcestruzzo" />
+      <div class="product-body">
+        <div class="product-icon">🏗️</div>
+        <div class="product-name">Cemento & Calcestruzzo</div>
+        <div class="product-desc">Sacchi di cemento, calcestruzzo preconfezionato, malte e massetti per fondamenta e strutture.</div>
+        <span class="product-tag">Strutturale</span>
+      </div>
+    </div>
+    <div class="product-card">
+      <img class="product-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=75" alt="Mattoni e laterizi" />
+      <div class="product-body">
+        <div class="product-icon">🧱</div>
+        <div class="product-name">Mattoni & Laterizi</div>
+        <div class="product-desc">Forati, pieni, faccia a vista. Blocchi in calcestruzzo, tavelle e tavelloni per murature di ogni tipo.</div>
+        <span class="product-tag">Muratura</span>
+      </div>
+    </div>
+    <div class="product-card">
+      <img class="product-img" src="https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?w=600&q=75" alt="Piastrelle e rivestimenti" />
+      <div class="product-body">
+        <div class="product-icon">⬛</div>
+        <div class="product-name">Piastrelle & Rivestimenti</div>
+        <div class="product-desc">Ceramiche, gres porcellanato, marmo e granito per pavimentazioni interne ed esterne.</div>
+        <span class="product-tag">Finitura</span>
+      </div>
+    </div>
+    <div class="product-card">
+      <img class="product-img" src="https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=600&q=75" alt="Pitture e vernici" />
+      <div class="product-body">
+        <div class="product-icon">🎨</div>
+        <div class="product-name">Pitture & Vernici</div>
+        <div class="product-desc">Pitture murali interne ed esterne, impermeabilizzanti, primer e finiture per ogni superficie.</div>
+        <span class="product-tag">Marchi: Mapei · Torggler</span>
+      </div>
+    </div>
+    <div class="product-card">
+      <img class="product-img" src="https://images.unsplash.com/photo-1586864387789-628af9feed72?w=600&q=75" alt="Legno e pannelli" />
+      <div class="product-body">
+        <div class="product-icon">🪵</div>
+        <div class="product-name">Legno & Pannelli</div>
+        <div class="product-desc">Travi, pannelli OSB, compensato, perlinato e materiali per carpenteria e coperture.</div>
+        <span class="product-tag">Carpenteria</span>
+      </div>
+    </div>
+    <div class="product-card">
+      <img class="product-img" src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=600&q=75" alt="Ferramenta e utensili" />
+      <div class="product-body">
+        <div class="product-icon">🔧</div>
+        <div class="product-name">Ferramenta & Utensili</div>
+        <div class="product-desc">Viti, bulloni, ancoraggi, utensili manuali e accessori per ogni lavorazione edile.</div>
+        <span class="product-tag">Accessori</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIZI -->
+<section class="services" id="servizi">
+  <div class="section-eyebrow">Cosa offriamo</div>
+  <div class="section-title" style="color:white">I Nostri Servizi</div>
+  <div class="services-grid">
+    <div class="service-item">
+      <div class="service-icon">🚛</div>
+      <div class="service-name">Consegne in Cantiere</div>
+      <div class="service-desc">Consegniamo i materiali direttamente in cantiere su tutta Genova e provincia, nei tempi concordati.</div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">♻️</div>
+      <div class="service-name">Ritiro Rifiuti Edili</div>
+      <div class="service-desc">Servizio di ritiro e stoccaggio rifiuti da costruzione e demolizione (17 09 04) e rottami ferrosi (17 04 05).</div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">📦</div>
+      <div class="service-name">Stoccaggio Materiali</div>
+      <div class="service-desc">Possibilità di stoccare i materiali acquistati in attesa della consegna programmata.</div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">💬</div>
+      <div class="service-name">Consulenza Tecnica</div>
+      <div class="service-desc">Il nostro team è a disposizione per consigliare il prodotto giusto per ogni esigenza costruttiva.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARCHI -->
+<section class="brands" id="marchi">
+  <div style="text-align:center">
+    <div class="section-eyebrow" style="text-align:center">I Nostri Partner</div>
+    <div class="section-title">Marchi Principali</div>
+  </div>
+  <div class="brands-grid">
+    <div class="brand-item">
+      <img src="https://www.edilquinto.it/wp-content/uploads/2018/04/mapei.jpg" alt="Mapei" />
+    </div>
+    <div class="brand-item">
+      <img src="https://www.edilquinto.it/wp-content/uploads/2018/04/kerakoll.jpg" alt="Kerakoll" />
+    </div>
+    <div class="brand-item">
+      <img src="https://www.edilquinto.it/wp-content/uploads/2018/04/torggler.jpg" alt="Torggler" />
+    </div>
+    <div class="brand-item">
+      <img src="https://www.edilquinto.it/wp-content/uploads/2018/04/logo-dec-trasparente-piccolo.png" alt="D.E.C." />
+    </div>
+  </div>
+</section>
+
+<!-- CONTATTI -->
+<section class="contact" id="contatti">
+  <div style="text-align:center; margin-bottom:3rem">
+    <div class="section-eyebrow" style="text-align:center">Dove siamo</div>
+    <div class="section-title">Contattaci</div>
+  </div>
+  <div class="contact-inner">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Indirizzo</div>
+          <div class="contact-value">Via Ruzza Francesco Maria, 2/R</div>
+          <div class="contact-sub">16166 Genova (GE)</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label">Telefono</div>
+          <div class="contact-value"><a href="tel:+390103725647" style="color:inherit;text-decoration:none">010 372 5647</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🕐</div>
+        <div>
+          <div class="contact-label">Orari Magazzino</div>
+          <table class="orari-table">
+            <tr><td>Lun – Ven</td><td>07:30 – 12:30 &nbsp; 14:00 – 18:00</td></tr>
+            <tr><td>Sabato</td><td>07:30 – 12:00</td></tr>
+            <tr><td>Domenica</td><td>Chiuso</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div>
+      <iframe
+        class="map-placeholder"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2837.5!2d8.9814!3d44.3845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDTCsDIzJzA0LjIiTiA4wrA1OSczMC4wIkU!5e0!3m2!1sit!2sit!4v1"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Mappa Edil Quinto Genova">
+      </iframe>
+      <p style="font-size:0.8rem; color:#888; margin-top:0.8rem; text-align:center">
+        Raggiungerci: Autostrada A7 uscita Genova Ovest, poi seguire per Quinto al Mare
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2025 <strong style="color:rgba(255,255,255,0.7)">Edil Quinto S.r.l.</strong> — P.IVA Genova — Tutti i diritti riservati</div>
+  <div>Via Ruzza Francesco Maria, 2/R · 16166 Genova · <a href="tel:+390103725647">010 372 5647</a></div>
+</footer>
+
+</body>
+</html>
